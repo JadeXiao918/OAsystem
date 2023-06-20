@@ -1,0 +1,48 @@
+server:
+  port: 8800
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/ao/*/mapper/xml/*.xml
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oa?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8
+    username: root
+    password: 8727913789
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    host: 192.168.152.130
+    port: 6379
+    database: 0
+    timeout: 1800000
+    jedis:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+  activiti:
+    #    false:默认，数据库表不变，但是如果版本不对或者缺失表会抛出异常（生产使用）
+    #    true:表不存在，自动创建（开发使用）
+    #    create_drop: 启动时创建，关闭时删除表（测试使用）
+    #    drop_create: 启动时删除表,在创建表 （不需要手动关闭引擎）
+    database-schema-update: true
+    #监测历史表是否存在，activities7默认不开启历史表
+    db-history-used: true
+    #none：不保存任何历史数据，流程中这是最高效的
+    #activity：只保存流程实例和流程行为
+    #audit：除了activity，还保存全部的流程任务以及其属性，audit为history默认值
+    #full：除了audit、还保存其他全部流程相关的细节数据，包括一些流程参数
+    history-level: full
+    #校验流程文件，默认校验resources下的process 文件夹的流程文件
+    check-process-definitions: true
+wechat:
+  mpAppId: wx3d1078e67d07421c
+  mpAppSecret: 720867b1c46b3c7518abd7edab2b7cf4
+  userInfoUrl: http://oaxiaozhida.free.idcfengye.com/admin/wechat/userInfo
